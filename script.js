@@ -1,8 +1,8 @@
 // script.js
 function add(a, b) {
-    return a + b+2;
+    return a + b;
   }
   
   module.exports = add;
-  console.log(add(5,6))
+  console.log(add(5,6));
   

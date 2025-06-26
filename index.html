@@ -9,10 +9,44 @@
     Tu za chwilę będzię coś...
     <br>
     <script>
-        // JavaScript code
-        document.write("Hello, World!");
-        //to sa moje zmiany
-    </script>
+            // Przykładowe zapytanie GraphQL
+            const query = `
+          {
+            continents {
+              code
+              name
+            }
+          }
+        `;
+
+        // Funkcja do wywołania publicznego API GraphQL
+        async function callGraphQLAPI() {
+          try {
+            const response = await fetch('https://countries.trevorblades.com/graphql', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+              body: JSON.stringify({ query })
+            });
+
+            if (!response.ok) {
+              throw new Error('Network response was not ok.');
+            }
+
+            const jsonResponse = await response.json();
+            document.write(`Odpowiedź z API: ${JSON.stringify(jsonResponse, null, 2)}`);
+          } catch (error) {
+            document.write('Wystąpił problem z pobraniem danych:', error);
+          }
+        }
+
+        // Wywołanie funkcji
+        callGraphQLAPI();
+        
+  </script>
+
 
 </body>
 </html>
